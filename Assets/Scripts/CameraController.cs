@@ -4,25 +4,61 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public InputReader reader;
+
+    private Vector2 mouseMovement;
+
     public Camera cam;
     private float xRotation = 0f;
+    private float yRotation = 0f;
+    public float xSensitivity = 100f;
+    public float ySensitivity = 100f;
 
-    public float xSensitivity = 30f;
-    public float ySensitivity = 30f;
+    public float xRotationTopClamp = -90f;
+    public float xRotationBotClamp = 90f;
 
-    public void PlayerLook(Vector2 input)
+    float mouseX;
+    float mouseY;
+
+    private void OnEnable()
     {
-        float mouseX = input.x;
-        float mouseY = input.y;
+        reader.mouseEvent += mouseInput;
+    }
 
-        //Calculate camera rotation for looking up/down
-        xRotation -= (mouseY * Time.deltaTime) * ySensitivity;
-        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+    private void OnDisable()
+    {
+        reader.mouseEvent -= mouseInput;
+    }
 
-        //Aplication to camera transform
-        cam.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+    void Start()
+    {
+        // Lock cursor to the midle of the screen and makes it invisible
 
-        //Rotates Player
-        transform.Rotate(Vector3.up * (mouseX * Time.deltaTime) * xSensitivity);
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void Update()
+    {
+        // Gett the mouse input
+        mouseX = mouseMovement.x * xSensitivity * Time.deltaTime;
+        mouseY = mouseMovement.y * ySensitivity * Time.deltaTime;
+
+        //X axis rotation
+        xRotation -= mouseY;
+
+        //Clamp rotation
+        xRotation = Mathf.Clamp(xRotation, xRotationTopClamp, xRotationBotClamp);
+
+        //Y axis rotation
+        yRotation += mouseX;
+
+        //Apply rotations to transform
+        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+
+    }
+
+    private void mouseInput(Vector2 input)
+    {
+        mouseMovement = input;
     }
 }

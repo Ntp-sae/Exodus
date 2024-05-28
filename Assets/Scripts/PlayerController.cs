@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isCrouching = false;
     public float crouchTimer = 1f;
 
-    private bool isMovig;
+    private bool isMovig = false;
     private bool isSprinting = false;
 
     private Vector3 playerMovement;
@@ -92,14 +92,14 @@ public class PlayerController : MonoBehaviour
 
     public void playerMovingForce()
     {
-        playerMovement = (transform.forward * moveDirection.z + transform.right * moveDirection.x) * speed;
+        playerMovement = (transform.forward * moveDirection.z + transform.right * moveDirection.x);
         playerMovement.y = playerVelocity;
-        playerController.Move(playerMovement.normalized * Time.deltaTime);
+        playerController.Move(playerMovement * speed * Time.deltaTime);
     }
 
     public void playerJump()
     {
-        if(playerController.isGrounded)
+        if (playerController.isGrounded)
         {
             playerVelocity = jumpHeight;
             Debug.Log("ImJumping");
@@ -115,12 +115,12 @@ public class PlayerController : MonoBehaviour
 
     public void playerStartSprint()
     {
-            speed = sprintSpeed;
+        speed = sprintSpeed;
     }
 
     public void playerStopSprint()
     {
-            speed = walkSpeed;
+        speed = walkSpeed;
     }
 
     private void gravity()
