@@ -33,9 +33,6 @@ public class PlayerController : MonoBehaviour
     {
         playerController = GetComponent<CharacterController>();
         speed = walkSpeed;
-        //_gravity = -10f;
-        //_gravityMultiplier = 1f;
-        //jumpHeight = 3f;
     }
 
     void OnEnable()
@@ -102,7 +99,6 @@ public class PlayerController : MonoBehaviour
         if (playerController.isGrounded)
         {
             playerVelocity = jumpHeight;
-            Debug.Log("ImJumping");
         }
     }
 

@@ -13,6 +13,7 @@ public class InputReader : ScriptableObject, PlayerInput.IOnFootActions
     public event Action crouchEvent;
     public event Action sprintPressEvent;
     public event Action sprintReleaseEvent;
+    public event Action shootEvent;
 
     private PlayerInput _playerInput;
 
@@ -62,6 +63,14 @@ public class InputReader : ScriptableObject, PlayerInput.IOnFootActions
         if (context.phase == InputActionPhase.Canceled)
         {
             sprintReleaseEvent?.Invoke();
+        }
+    }
+
+    public void OnShoot(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            shootEvent?.Invoke();
         }
     }
 

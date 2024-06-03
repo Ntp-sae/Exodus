@@ -11,8 +11,8 @@ public class CameraController : MonoBehaviour
     public Camera cam;
     private float xRotation = 0f;
     private float yRotation = 0f;
-    public float xSensitivity = 100f;
-    public float ySensitivity = 100f;
+    public float xSensitivity = 10f;
+    public float ySensitivity = 10f;
 
     public float xRotationTopClamp = -90f;
     public float xRotationBotClamp = 90f;
