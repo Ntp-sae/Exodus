@@ -1070,8 +1070,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 662527485506467854, guid: ceb2c3e7a03de5d45b9243573b28eb48, type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 662527485506467854, guid: ceb2c3e7a03de5d45b9243573b28eb48, type: 3}
       propertyPath: playOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 662527485506467854, guid: ceb2c3e7a03de5d45b9243573b28eb48, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1229078844195073080, guid: ceb2c3e7a03de5d45b9243573b28eb48, type: 3}
       propertyPath: m_Name
