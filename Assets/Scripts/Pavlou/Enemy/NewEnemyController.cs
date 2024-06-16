@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,9 +25,13 @@ public class NewEnemyController : MonoBehaviour
     [SerializeField] bool canDodge = true;
     [SerializeField] bool gotHit = false;
     [SerializeField]Collider thisCollider;
+    [SerializeField] GameObject particleEffect;
+    [SerializeField] Transform initialParticlePosition;
     #endregion
     //Test Section
     public float Testspeed;
+    public bool BreathPoison=false;
+    public float timeElapsed;
     #region Timers
     [SerializeField] float attackDelay = 2f;
     [SerializeField] float currentAttackTimer;
@@ -63,7 +68,11 @@ public class NewEnemyController : MonoBehaviour
         Testspeed = agent.speed;
         //===================
 
-
+        if(BreathPoison)
+        {
+            SpecialAttack();
+          
+        }
         Logic();
         switch (currentState)
         {
@@ -235,7 +244,7 @@ public class NewEnemyController : MonoBehaviour
         agent.speed = chaseSpeed;
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = UserVolumePreferred;
-
+        ResetBreathTime();
         //TODO PLAYERCONTROLLER TO SINGLETON
         player = FindObjectOfType<PlayerController>();
     }
@@ -278,5 +287,24 @@ public class NewEnemyController : MonoBehaviour
     //{
 
     //}
+    public void SpecialAttack()
+    {
+        particleEffect.transform.position = initialParticlePosition.transform.position;
+        Vector3 direction = player.transform.position - initialParticlePosition.transform.position;
+        particleEffect.transform.rotation = Quaternion.LookRotation(direction);
+        particleEffect.SetActive(true);
+        timeElapsed-=Time.deltaTime;
+        
+        if(timeElapsed <= 0f)
+        {
+            particleEffect.SetActive(false);
+            ResetBreathTime();
+            BreathPoison = false;
+        }
+    }
 
+    private void ResetBreathTime()
+    {
+        timeElapsed = particleEffect.GetComponent<ParticleSystem>().main.duration +0.5f;
+    }
 }
