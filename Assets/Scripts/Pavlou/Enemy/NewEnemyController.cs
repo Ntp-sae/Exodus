@@ -11,12 +11,13 @@ public class NewEnemyController : MonoBehaviour
     #region Stats
     [SerializeField] float speed = 1f;
     [SerializeField] float chaseSpeed = 2f;
-    [SerializeField] float rageSpeed = 5f;  
+    [SerializeField] float rageSpeed = 5f;
     [SerializeField] float health = 1000f;
     [SerializeField] float MaxHealth = 1000f;
     [SerializeField] float AttackRange = 4f;
     private bool canAttack = true;
-    [SerializeField] float AttackDamage;    
+    [SerializeField] float AttackDamage;
+    float distanceToPlayer;
     [SerializeField] bool chasePlayer;
     [SerializeField] Transform initialPosition;
     [SerializeField] bool returnToSpawn = false;
@@ -24,19 +25,19 @@ public class NewEnemyController : MonoBehaviour
     private bool isAlive = true;
     [SerializeField] bool canDodge = true;
     [SerializeField] bool gotHit = false;
-    [SerializeField]Collider thisCollider;
+    //[SerializeField] Collider thisCollider;???
     [SerializeField] GameObject particleEffect;
     [SerializeField] Transform initialParticlePosition;
     #endregion
     //Test Section
     public float Testspeed;
-    public bool BreathPoison=false;
+    public bool PoisonBreath = false;
     public float timeElapsed;
     #region Timers
     [SerializeField] float attackDelay = 2f;
     [SerializeField] float currentAttackTimer;
     [SerializeField] float idleDelay = 2f;
-    [SerializeField] float dodgeDelay = 4f;
+    [SerializeField] float dodgeDelay = 2f;
     private float currentDodgeTimer;
     private float checkHealthTimer = 1f;
     private float timerThreshold = 2f;
@@ -68,10 +69,9 @@ public class NewEnemyController : MonoBehaviour
         Testspeed = agent.speed;
         //===================
 
-        if(BreathPoison)
+        if (PoisonBreath)
         {
             SpecialAttack();
-          
         }
         Logic();
         switch (currentState)
@@ -88,9 +88,9 @@ public class NewEnemyController : MonoBehaviour
             case EnemyState.Death:
                 Death();
                 break;
-            case EnemyState.GetHit:
-                GetHit();
-                break;
+            //case EnemyState.GetHit:
+            //    GetHit();
+            //    break;
             default:
                 break;
         }
@@ -117,7 +117,7 @@ public class NewEnemyController : MonoBehaviour
                 timerThreshold = 2f;
             }
         }
-
+        distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         Dodge();
         ResetPosition();
 
@@ -132,7 +132,7 @@ public class NewEnemyController : MonoBehaviour
         }
         if (chasePlayer)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
             currentState = EnemyState.Chase;
             if (distanceToPlayer <= AttackRange)
             {
@@ -142,7 +142,7 @@ public class NewEnemyController : MonoBehaviour
                     currentState = EnemyState.Attack;
                 }
             }
-           
+
         }
 
 
@@ -158,7 +158,7 @@ public class NewEnemyController : MonoBehaviour
 
     void Dodge()
     {
-        if (canDodge)
+        if (canDodge && distanceToPlayer>=AttackRange+1f)
         {
             if (gotHit)
             {
@@ -170,15 +170,13 @@ public class NewEnemyController : MonoBehaviour
                     thisAnimator.SetTrigger("Dodge");
                     transform.LookAt(player.transform.position);
                     //TODO TURN OFF COLLIDER WHILE DODGE ANIMATION IS PLAYING
-
-                    
+                    //RAYCAST TO CHECK DODGE DIRECTION
                 }
                 else
                 {
                     thisAnimator.SetInteger("DodgePattern", direction);
                     thisAnimator.SetTrigger("Dodge");
                     transform.LookAt(player.transform.position);
-                    
                 }
                 canDodge = false;
                 currentState = EnemyState.Chase;
@@ -219,8 +217,6 @@ public class NewEnemyController : MonoBehaviour
         thisAnimator.SetInteger("AttackPattern", attackRandomizer);
         thisAnimator.SetTrigger("Attack");
         canAttack = false;
-
-
     }
 
     void Death()
@@ -230,10 +226,12 @@ public class NewEnemyController : MonoBehaviour
         agent.isStopped = true;
         agent.ResetPath();
     }
-    void GetHit()
-    {
 
-    }
+    //TODO
+    //void GetHit()
+    //{
+
+    //}
 
     void ResetEnemy()
     {
@@ -268,6 +266,9 @@ public class NewEnemyController : MonoBehaviour
     }
     void SetBoolReturnToSpawn()
     {
+        //TODO
+        //NavMeshObstacle Component on Doors to reset position to 
+        //Enable-Disable Component with Script based on Door's State (opened/close)
         returnToSpawn = true;
     }
     public void TakeDamage(float damage)
@@ -293,18 +294,18 @@ public class NewEnemyController : MonoBehaviour
         Vector3 direction = player.transform.position - initialParticlePosition.transform.position;
         particleEffect.transform.rotation = Quaternion.LookRotation(direction);
         particleEffect.SetActive(true);
-        timeElapsed-=Time.deltaTime;
-        
-        if(timeElapsed <= 0f)
+        timeElapsed -= Time.deltaTime;
+
+        if (timeElapsed <= 0f)
         {
             particleEffect.SetActive(false);
             ResetBreathTime();
-            BreathPoison = false;
+            PoisonBreath = false;
         }
     }
 
     private void ResetBreathTime()
     {
-        timeElapsed = particleEffect.GetComponent<ParticleSystem>().main.duration +0.5f;
+        timeElapsed = particleEffect.GetComponent<ParticleSystem>().main.duration + 0.5f;
     }
 }
