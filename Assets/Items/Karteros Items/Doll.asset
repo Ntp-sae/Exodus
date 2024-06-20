@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Doll
   itemDescription: My baby's doll. I thought I lost it.
   itemType: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 35408d2ab94c5304e8662f94a8bcef92, type: 3}
   itemTitle: 
   itemPrefab: {fileID: 0}
   itemButton: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}

@@ -20,10 +20,20 @@ public class LootBoxController : MonoBehaviour
 
             item = data[Random.Range(0, data.Count)];
             Button chestSlot = Instantiate(item.itemButton);
+            
 
             chestSlot.transform.parent = ChestItemsPanel.transform;
+
+            
             chestSlot.GetComponent<ItemButton>().data = item;
- 
+
+            Image image = chestSlot.GetComponentInChildren<Image>();
+
+            if (image != null )
+            {
+                image.sprite = item.itemIcon;
+            }
+
         }
 
         ChestPanel.SetActive(false);

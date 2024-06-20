@@ -10,7 +10,7 @@ public class ItemData : ScriptableObject
     public string itemName;
     public string itemDescription;
     public string itemType;
-    public Image itemIcon;
+    public Sprite itemIcon;
     public string itemTitle;
     public GameObject itemPrefab;
     public Button itemButton;

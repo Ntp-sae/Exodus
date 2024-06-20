@@ -101,6 +101,13 @@ public class InventoryManager : MonoBehaviour
 
                     inventorySlot.GetComponent<ItemButton>().data = item;
 
+                    Image image = inventorySlot.GetComponentInChildren<Image>();
+
+                    if (image != null)
+                    {
+                        image.sprite = item.itemIcon;
+                    }
+
                 }
 
                 Debug.Log("No space in the inventory");

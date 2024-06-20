@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Ammo
   itemDescription: A bunch of bullets for my gun
   itemType: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 012676b316d659b4486d1bb27c050fef, type: 3}
   itemTitle: 
   itemPrefab: {fileID: 0}
   itemButton: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}
