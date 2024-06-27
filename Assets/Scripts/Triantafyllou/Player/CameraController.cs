@@ -35,6 +35,7 @@ public class CameraController : MonoBehaviour
         // Lock cursor to the midle of the screen and makes it invisible
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()
