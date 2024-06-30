@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryManager : MonoBehaviour 
+public class InventoryManager : MonoBehaviour
 {
     //[SerializeField] PlayerController playerController;
     [SerializeField] GameObject InventoryItemsPanel;
     [SerializeField] GameObject InventoryPanel;
+
 
     public bool inventoryOpen = false;
 
@@ -26,17 +27,19 @@ public class InventoryManager : MonoBehaviour
             instance = this;
         }
     }
-        
-        
-        
-        
-        // Start is called before the first frame update
+
+
+
+
+    // Start is called before the first frame update
     void Start()
     {
+        
+
         //playerController = GetComponent<PlayerController>();
         InventoryPanel.SetActive(false);
-        
-        
+
+
     }
 
     //Update is called once per frame
@@ -44,6 +47,9 @@ public class InventoryManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
+
+
+
             if (!inventoryOpen)
             {
                 InventoryPanel.SetActive(true);
@@ -62,9 +68,9 @@ public class InventoryManager : MonoBehaviour
                 inventoryOpen = false;
             }
 
-            
 
-            
+
+
 
         }
 
@@ -87,8 +93,10 @@ public class InventoryManager : MonoBehaviour
                         inventoryItems[i] = item;
 
                     }
-                   
+
                 }
+
+
 
                 // Adds a new item if the inventory has space
                 if (inventoryItems.Count < maxItems)
@@ -113,11 +121,11 @@ public class InventoryManager : MonoBehaviour
                 Debug.Log("No space in the inventory");
             }
         }
-        
-        
 
-        
-       
+
+
+
+
 
     }
 }

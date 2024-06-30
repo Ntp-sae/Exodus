@@ -9,13 +9,15 @@ public class LootBoxController : MonoBehaviour
     [SerializeField] GameObject ChestPanel;
     [SerializeField] List<ItemData> data;
     private ItemData item;
-    public bool chestCanOpen = false;
+    public bool chestCanOpen;
     public bool chestIsOpen = false;
+    
 
     void Start()
     {
+        chestCanOpen = false;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 5; i++)
         {
 
             item = data[Random.Range(0, data.Count)];
@@ -44,6 +46,7 @@ public class LootBoxController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             chestCanOpen=true;
+            
         }
     }
 
