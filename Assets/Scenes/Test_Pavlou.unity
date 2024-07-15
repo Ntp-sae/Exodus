@@ -1501,9 +1501,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e3fea947c0b5242b961998a5236d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  chaseSpeed: 4
-  rageSpeed: 8
+  speed: 5
+  chaseSpeed: 5
+  rageSpeed: 5
   health: 1000
   MaxHealth: 1000
   AttackRange: 4
@@ -1515,9 +1515,7 @@ MonoBehaviour:
   gotHit: 0
   particleEffect: {fileID: 1313974615}
   initialParticlePosition: {fileID: 6735205811102274798}
-  Testspeed: 0
   PoisonBreath: 0
-  timeElapsed: 0
   attackDelay: 2
   currentAttackTimer: 0
   idleDelay: 0

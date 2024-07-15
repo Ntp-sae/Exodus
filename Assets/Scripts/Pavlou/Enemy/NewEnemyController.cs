@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.AnimatedValues;
 using UnityEditor.Rendering;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
@@ -9,9 +10,9 @@ using UnityEngine.AI;
 public class NewEnemyController : MonoBehaviour
 {
     #region Stats
-    [SerializeField] float speed = 1f;
-    [SerializeField] float chaseSpeed = 2f;
-    [SerializeField] float rageSpeed = 5f;
+    [SerializeField] float speed = 6f;
+    [SerializeField] float chaseSpeed = 6f;
+    [SerializeField] float rageSpeed = 8f;
     [SerializeField] float health = 1000f;
     [SerializeField] float MaxHealth = 1000f;
     [SerializeField] float AttackRange = 4f;
@@ -29,10 +30,10 @@ public class NewEnemyController : MonoBehaviour
     [SerializeField] GameObject particleEffect;
     [SerializeField] Transform initialParticlePosition;
     #endregion
-    //Test Section
-    public float Testspeed;
+
+    //Breath Attack Section
     public bool PoisonBreath = false;
-    public float timeElapsed;
+    private bool specialAttack = false; 
     #region Timers
     [SerializeField] float attackDelay = 2f;
     [SerializeField] float currentAttackTimer;
@@ -43,6 +44,8 @@ public class NewEnemyController : MonoBehaviour
     private float timerThreshold = 2f;
     #endregion
 
+    private float timeElapsed;
+    private int breathAttackChance = 15;
     NavMeshAgent agent;
     Animator thisAnimator;
     AudioSource audioSource;
@@ -65,9 +68,7 @@ public class NewEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TEST SECTION
-        Testspeed = agent.speed;
-        //===================
+        
 
         if (PoisonBreath)
         {
@@ -108,6 +109,17 @@ public class NewEnemyController : MonoBehaviour
             currentState = EnemyState.Death;
             return;
         }
+
+        if(specialAttack)
+        {
+            timeElapsed -= Time.deltaTime;
+            if(timeElapsed <= 0)
+            {
+                ResetBreathAttack();
+                specialAttack = false;
+            }
+        }
+
         if (gotHit)
         {
             timerThreshold -= Time.deltaTime;
@@ -132,7 +144,6 @@ public class NewEnemyController : MonoBehaviour
         }
         if (chasePlayer)
         {
-
             currentState = EnemyState.Chase;
             if (distanceToPlayer <= AttackRange)
             {
@@ -142,10 +153,7 @@ public class NewEnemyController : MonoBehaviour
                     currentState = EnemyState.Attack;
                 }
             }
-
         }
-
-
     }
 
     void Idle()
@@ -158,7 +166,7 @@ public class NewEnemyController : MonoBehaviour
 
     void Dodge()
     {
-        if (canDodge && distanceToPlayer>=AttackRange+1f)
+        if (canDodge && distanceToPlayer >= AttackRange + 1f)
         {
             if (gotHit)
             {
@@ -217,6 +225,11 @@ public class NewEnemyController : MonoBehaviour
         thisAnimator.SetInteger("AttackPattern", attackRandomizer);
         thisAnimator.SetTrigger("Attack");
         canAttack = false;
+        if (Random.Range(0, 101) <= breathAttackChance)
+        {
+            Invoke("SpecialAttack", Random.Range(0.9f,1.5f));
+        }
+
     }
 
     void Death()
@@ -290,22 +303,23 @@ public class NewEnemyController : MonoBehaviour
     //}
     public void SpecialAttack()
     {
+        specialAttack = true;
         particleEffect.transform.position = initialParticlePosition.transform.position;
         Vector3 direction = player.transform.position - initialParticlePosition.transform.position;
         particleEffect.transform.rotation = Quaternion.LookRotation(direction);
         particleEffect.SetActive(true);
-        timeElapsed -= Time.deltaTime;
 
-        if (timeElapsed <= 0f)
-        {
-            particleEffect.SetActive(false);
-            ResetBreathTime();
-            PoisonBreath = false;
-        }
+    }
+
+    private void ResetBreathAttack()
+    {
+        particleEffect.SetActive(false);
+        ResetBreathTime();
+        PoisonBreath = false;
     }
 
     private void ResetBreathTime()
     {
-        timeElapsed = particleEffect.GetComponent<ParticleSystem>().main.duration + 0.5f;
+        timeElapsed = particleEffect.GetComponent<ParticleSystem>().main.duration;
     }
 }
