@@ -1514,7 +1514,6 @@ MonoBehaviour:
   gotHit: 0
   particleEffect: {fileID: 1313974615}
   initialParticlePosition: {fileID: 6735205811102274798}
-  PoisonBreath: 0
   attackDelay: 2
   currentAttackTimer: 0
   idleDelay: 0

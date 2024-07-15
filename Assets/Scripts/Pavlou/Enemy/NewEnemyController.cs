@@ -31,8 +31,7 @@ public class NewEnemyController : MonoBehaviour
     #endregion
 
     //Breath Attack Section
-    public bool PoisonBreath = false;
-    private bool specialAttack = false; 
+    private bool specialAttack = false;
     #region Timers
     [SerializeField] float attackDelay = 2f;
     [SerializeField] float currentAttackTimer;
@@ -43,10 +42,11 @@ public class NewEnemyController : MonoBehaviour
     #endregion
 
     private float timeElapsed;
-    private int breathAttackChance = 15;
+    private int breathAttackChance = 100;
     NavMeshAgent agent;
     Animator thisAnimator;
     AudioSource audioSource;
+    Ray ray;
     private float UserVolumePreferred = 0.5f;
     public enum EnemyState
     {
@@ -66,10 +66,6 @@ public class NewEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PoisonBreath)
-        {
-            SpecialAttack();
-        }
         Logic();
         switch (currentState)
         {
@@ -106,10 +102,10 @@ public class NewEnemyController : MonoBehaviour
             return;
         }
 
-        if(specialAttack)
+        if (specialAttack)
         {
             timeElapsed -= Time.deltaTime;
-            if(timeElapsed <= 0)
+            if (timeElapsed <= 0)
             {
                 ResetBreathAttack();
                 specialAttack = false;
@@ -206,26 +202,30 @@ public class NewEnemyController : MonoBehaviour
 
     void Attack()
     {
-        //Vector3 alignedPosition = player.transform.position;
-        //alignedPosition.y = transform.position.y;
-
-        transform.LookAt(player.transform);
-        agent.isStopped = true;
-        agent.velocity = Vector3.zero;
-        thisAnimator.SetFloat("Speed", 0, 0.1f, Time.deltaTime);
-
-        int attackRandomizer = Random.Range(0, 4);
-        Debug.Log(attackRandomizer);
-        // Reset timer
-        currentAttackTimer = 0;
-        thisAnimator.SetInteger("AttackPattern", attackRandomizer);
-        thisAnimator.SetTrigger("Attack");
-        canAttack = false;
-        if (Random.Range(0, 101) <= breathAttackChance)
+        if (Random.Range(0, 101) <= 70)
         {
-            Invoke("SpecialAttack", Random.Range(0.9f,1.5f));
-        }
+            transform.LookAt(player.transform);
+            agent.isStopped = true;
+            agent.velocity = Vector3.zero;
+            thisAnimator.SetFloat("Speed", 0, 0.1f, Time.deltaTime);
 
+            int attackRandomizer = Random.Range(0, 4);
+            Debug.Log(attackRandomizer);
+            // Reset timer
+            currentAttackTimer = 0;
+            thisAnimator.SetInteger("AttackPattern", attackRandomizer);
+            thisAnimator.SetTrigger("Attack");
+            canAttack = false;
+            if (Random.Range(0, 101) <= breathAttackChance)
+            {
+                Invoke("SpecialAttack", Random.Range(0.9f, 1.5f));
+            }
+        }
+        else
+        {
+            SpecialAttack();
+            canAttack = false;
+        }
     }
 
     void Death()
@@ -299,18 +299,27 @@ public class NewEnemyController : MonoBehaviour
     //}
     public void SpecialAttack()
     {
+        ray.origin = particleEffect.transform.position;
+        ray.direction = player.transform.position + Vector3.up - particleEffect.transform.position;
         specialAttack = true;
         particleEffect.transform.position = initialParticlePosition.transform.position;
         Vector3 direction = player.transform.position - initialParticlePosition.transform.position;
         particleEffect.transform.rotation = Quaternion.LookRotation(direction);
         particleEffect.SetActive(true);
+        if(Physics.Raycast(ray, out RaycastHit hit, 4f))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                Debug.Log("Player Got Beamed");
+                //player.TakeDamage(AttackDamage);
+            }
+        }
     }
 
     private void ResetBreathAttack()
     {
         particleEffect.SetActive(false);
         ResetBreathTime();
-        PoisonBreath = false;
     }
 
     private void ResetBreathTime()
