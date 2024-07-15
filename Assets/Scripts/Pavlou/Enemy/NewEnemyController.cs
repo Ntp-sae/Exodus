@@ -10,8 +10,7 @@ using UnityEngine.AI;
 public class NewEnemyController : MonoBehaviour
 {
     #region Stats
-    [SerializeField] float speed = 6f;
-    [SerializeField] float chaseSpeed = 6f;
+    [SerializeField] float normalSpeed = 6f;
     [SerializeField] float rageSpeed = 8f;
     [SerializeField] float health = 1000f;
     [SerializeField] float MaxHealth = 1000f;
@@ -40,7 +39,6 @@ public class NewEnemyController : MonoBehaviour
     [SerializeField] float idleDelay = 2f;
     [SerializeField] float dodgeDelay = 2f;
     private float currentDodgeTimer;
-    private float checkHealthTimer = 1f;
     private float timerThreshold = 2f;
     #endregion
 
@@ -68,8 +66,6 @@ public class NewEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         if (PoisonBreath)
         {
             SpecialAttack();
@@ -252,7 +248,7 @@ public class NewEnemyController : MonoBehaviour
         isAlive = true;
         thisAnimator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = chaseSpeed;
+        agent.speed = normalSpeed;
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = UserVolumePreferred;
         ResetBreathTime();
@@ -295,7 +291,7 @@ public class NewEnemyController : MonoBehaviour
         {
             return rageSpeed;
         }
-        else return speed;
+        else return normalSpeed;
     }
     //private bool CheckHealth(float tmpHealth)
     //{
@@ -308,7 +304,6 @@ public class NewEnemyController : MonoBehaviour
         Vector3 direction = player.transform.position - initialParticlePosition.transform.position;
         particleEffect.transform.rotation = Quaternion.LookRotation(direction);
         particleEffect.SetActive(true);
-
     }
 
     private void ResetBreathAttack()
