@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   id: 2
   itemName: Ammo
-  itemDescription: A bunch of bullets for my gun
-  itemType: 
-  itemIcon: {fileID: 21300000, guid: 012676b316d659b4486d1bb27c050fef, type: 3}
+  itemDescription: A bunch of bullets for my guns
+  itemType: General
+  itemIcon: {fileID: 21300000, guid: 12b985af2e9c2a141a1456c5f8332fcb, type: 3}
   itemTitle: 
   itemPrefab: {fileID: 0}
   itemButton: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}
+  minAmount: 15
+  maxAmount: 45

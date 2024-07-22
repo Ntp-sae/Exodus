@@ -1,0 +1,91 @@
+Food Items Icons:
+* Apple
+* Fish
+* Raw Meat
+* Cooked Meat
+* Bread
+* Berries
+* Mushrooms
+* Canned Food
+Beverage Items Icons:
+* Water Bottle
+* Soda Bottle
+* Alcohol Bottle
+* Empty Bottle
+* Fruit Juice
+* Milk
+* Coffee
+* Water Flask
+* Pan
+Crafting and Material Items Icons:
+* Wooden Plank
+* Metal Plank
+* Metal Bar
+* Leather
+* Fabric
+* Thread
+* Nails
+* Rope
+* Gas Can
+* Wire Cutters
+* Hammer
+* Wrench
+* Shovel
+Healing Items Icons:
+* Bandages
+* First Aid Kit
+* Antibiotics
+Weapons and Tools Icons:
+* Survival Knife
+* Pistol
+* Shotgun
+* AK47 Assault Rifle
+* Sniper Rifle
+* Pump-action Shotgun
+* Submachine Gun (SMG)
+* Handgun Ammo
+* Rifle Ammo
+* Shotgun Shells
+* Bow
+* Arrows
+* Stone Axe
+* Metal Axe
+* Metal Pickaxe
+* Club
+* Baseball Bat
+* Spiked Baseball Bat
+* Molotov Cocktail
+* Grenade
+Gathering Items Icons:
+* Medicinal Herbs
+* Mortar
+* Fishing Rod
+* Fishing Hook
+* Electronic Components
+* Letter (Added)
+Clothing and Armor Items Icons:
+* Lightweight Backpack
+* Military Backpack
+* Military Helmet
+* Tactical Ballistic Helmet
+* Military plate carrier
+* Police Bulletproof Vest
+Quest Items Icons:
+* Document
+* Letter (Added)
+* Key
+Leisure Items Icons:
+* Book
+* Compass
+* Journal
+* Radio
+* Harmonica
+* Scotch Tape
+* Map
+* Flashlight
+* Lighter
+* Camera
+* Batteries
+* Deck of Cards
+* Teddy Bear Plush
+

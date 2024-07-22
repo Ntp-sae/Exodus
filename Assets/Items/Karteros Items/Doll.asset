@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   id: 0
   itemName: Doll
-  itemDescription: My baby's doll. I thought I lost it.
-  itemType: 
-  itemIcon: {fileID: 21300000, guid: 35408d2ab94c5304e8662f94a8bcef92, type: 3}
+  itemDescription: My baby's teddy bear. I thought I lost it. Like her.
+  itemType: Quest
+  itemIcon: {fileID: 21300000, guid: e2ea5ddaca4a22e40813b0b6e00908f2, type: 3}
   itemTitle: 
   itemPrefab: {fileID: 0}
   itemButton: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}
+  minAmount: 1
+  maxAmount: 1

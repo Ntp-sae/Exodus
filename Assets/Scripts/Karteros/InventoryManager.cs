@@ -12,7 +12,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool inventoryOpen = false;
 
-    public int maxItems = 10;
+    public int maxItems = 5;
 
     public static InventoryManager instance;
 
@@ -79,7 +79,7 @@ public class InventoryManager : MonoBehaviour
     }
 
 
-    public void AddItem(int itemID)
+    public void AddItem(int itemID, int amount)
     {
         foreach (ItemData item in allItems)
         {
@@ -94,6 +94,11 @@ public class InventoryManager : MonoBehaviour
 
                     }
 
+                    if (inventoryItems[i] != null)
+                    {
+                        inventoryItems[i].inventoryAmount += amount;
+                    }
+
                 }
 
 
@@ -105,9 +110,10 @@ public class InventoryManager : MonoBehaviour
 
                     Button inventorySlot = Instantiate(item.itemButton);
 
-                    inventorySlot.transform.parent = InventoryItemsPanel.transform;
+                    inventorySlot.transform.SetParent(InventoryItemsPanel.transform, false);
 
                     inventorySlot.GetComponent<ItemButton>().data = item;
+                    
 
                     Image image = inventorySlot.GetComponentInChildren<Image>();
 

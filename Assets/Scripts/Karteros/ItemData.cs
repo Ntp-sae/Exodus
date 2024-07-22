@@ -14,6 +14,9 @@ public class ItemData : ScriptableObject
     public string itemTitle;
     public GameObject itemPrefab;
     public Button itemButton;
+    public int minAmount;
+    public int maxAmount;
+    public int inventoryAmount;
 
 }
 

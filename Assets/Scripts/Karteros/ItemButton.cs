@@ -9,6 +9,7 @@ public class ItemButton : MonoBehaviour //IPointerEnterHandler, IPointerExitHand
     //private ItemDescription tooltip;
     
     public ItemData data;
+   
 
 
     //private void Start()

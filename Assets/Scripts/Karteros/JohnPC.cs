@@ -19,12 +19,16 @@ public class JohnPC : MonoBehaviour
     private bool isCrouched = false;
     private Vector3 originalCameraPosition;
 
+    
+
     void Start()
     {
         playerCamera = GetComponentInChildren<Camera>();
         playerCollider = GetComponent<CapsuleCollider>();
         Cursor.lockState = CursorLockMode.Locked;
         originalCameraPosition = playerCamera.transform.localPosition;
+
+        
     }
 
     void Update()
@@ -37,6 +41,8 @@ public class JohnPC : MonoBehaviour
 
     void Move()
     {
+        
+        if (InventoryManager.instance.inventoryOpen) { return; } //prohibits movement if the player has opened their inventory
         float moveX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         float moveZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
 
@@ -46,6 +52,8 @@ public class JohnPC : MonoBehaviour
 
     void Look()
     {
+        if (InventoryManager.instance.inventoryOpen) { return; } //prohibits mouse look if the player has opened their inventory 
+        
         float mouseX = Input.GetAxis("Mouse X") * lookSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * lookSensitivity;
 
