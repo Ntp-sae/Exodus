@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,13 +20,17 @@ public class LootBoxController : MonoBehaviour
     {
         chestCanOpen = false;
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
 
-            item = data[Random.Range(0, data.Count)];
-            int quantity = Random.Range(item.minAmount, item.maxAmount);
-            Button chestSlot = Instantiate(item.itemButton);
-
+            item = data[i];
+            //int quantity = Random.Range(item.minAmount, item.maxAmount);
+            
+            Button chestSlot = Instantiate(item.itemButtonChest);
+            TMP_Text text = chestSlot.GetComponentInChildren<TMP_Text>();
+            //item.chestAmount = quantity;
+            
+            text.text = item.chestAmount.ToString();
 
             chestSlot.transform.SetParent(ChestItemsPanel.transform, false);
 
@@ -43,8 +48,7 @@ public class LootBoxController : MonoBehaviour
 
             if (quantityText != null)
             {
-                quantityText.text = "x" + quantity.ToString();
-                Debug.Log("Text not found!");
+                quantityText.text = "x" + item.chestAmount.ToString();
             }
         }
 

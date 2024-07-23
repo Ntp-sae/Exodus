@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool inventoryOpen = false;
 
-    public int maxItems = 5;
+    public int maxItems;
 
     public static InventoryManager instance;
 
@@ -85,18 +86,20 @@ public class InventoryManager : MonoBehaviour
         {
             if (item.id == itemID)
             {
+                item.inventoryAmount += item.chestAmount;
                 // Finds an empty slot if there is one
                 for (int i = 0; i < inventoryItems.Count; i++)
                 {
                     if (inventoryItems[i] == null)
                     {
                         inventoryItems[i] = item;
+                        //item.inventoryAmount += item.chestAmount;
 
                     }
 
                     if (inventoryItems[i] != null)
                     {
-                        inventoryItems[i].inventoryAmount += amount;
+                        //inventoryItems[i].inventoryAmount += amount;
                     }
 
                 }
@@ -108,30 +111,44 @@ public class InventoryManager : MonoBehaviour
                 {
                     inventoryItems.Add(item);
 
-                    Button inventorySlot = Instantiate(item.itemButton);
+                    Button inventorySlot = Instantiate(item.inventoryButton);
 
                     inventorySlot.transform.SetParent(InventoryItemsPanel.transform, false);
 
-                    inventorySlot.GetComponent<ItemButton>().data = item;
+                    if(inventorySlot.GetComponent<ItemButton>() != null)
+                    {
+                        inventorySlot.GetComponent<ItemButton>().data = item;
+                        inventorySlot.GetComponentInChildren<TMP_Text>().text = item.inventoryAmount.ToString();
+                        Image image = inventorySlot.GetComponentInChildren<Image>();
+                        if (image != null)
+                        {
+                            image.sprite = item.itemIcon;
+                        }
+                    }
                     
 
-                    Image image = inventorySlot.GetComponentInChildren<Image>();
-
-                    if (image != null)
+                    if(inventorySlot.GetComponentInChildren<InventoryItem>() != null)
                     {
-                        image.sprite = item.itemIcon;
+                        inventorySlot.GetComponent<InventoryItem>().itemData = item;
+                        Image image = inventorySlot.GetComponentInChildren<Image>();
+                        if (image != null)
+                        {
+                            image.sprite = item.itemIcon;
+                        }
                     }
 
+                    
+
+                    
+
+                }
+                else
+                {
+                    Debug.Log("No space in the inventory");
                 }
 
-                Debug.Log("No space in the inventory");
+                
             }
         }
-
-
-
-
-
-
     }
 }

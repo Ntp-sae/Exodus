@@ -15,10 +15,13 @@ MonoBehaviour:
   id: 1
   itemName: Scrap metal
   itemDescription: Bunch of metal scraps. Could be useful if I gather enough.
-  itemType: General
+  itemType: 1
   itemIcon: {fileID: 21300000, guid: 378e185567d334948800a83522d59ec3, type: 3}
   itemTitle: 
   itemPrefab: {fileID: 0}
-  itemButton: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}
-  minAmount: 5
+  itemButtonChest: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}
+  inventoryButton: {fileID: 6963195562692486664, guid: dfe1d876897eac3488c2587c1ed82f33, type: 3}
+  minAmount: 25
   maxAmount: 25
+  chestAmount: 25
+  inventoryAmount: 47

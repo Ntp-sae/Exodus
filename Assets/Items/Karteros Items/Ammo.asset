@@ -15,10 +15,13 @@ MonoBehaviour:
   id: 2
   itemName: Ammo
   itemDescription: A bunch of bullets for my guns
-  itemType: General
+  itemType: 0
   itemIcon: {fileID: 21300000, guid: 12b985af2e9c2a141a1456c5f8332fcb, type: 3}
   itemTitle: 
   itemPrefab: {fileID: 0}
-  itemButton: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}
-  minAmount: 15
-  maxAmount: 45
+  itemButtonChest: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}
+  inventoryButton: {fileID: 6963195562692486664, guid: dfe1d876897eac3488c2587c1ed82f33, type: 3}
+  minAmount: 25
+  maxAmount: 25
+  chestAmount: 25
+  inventoryAmount: 0

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 [CreateAssetMenu]
 public class ItemData : ScriptableObject
@@ -9,14 +11,24 @@ public class ItemData : ScriptableObject
     public int id;
     public string itemName;
     public string itemDescription;
-    public string itemType;
+    public ItemType itemType;
     public Sprite itemIcon;
     public string itemTitle;
     public GameObject itemPrefab;
-    public Button itemButton;
+    public Button itemButtonChest;
+    public Button inventoryButton;
     public int minAmount;
     public int maxAmount;
+    public int chestAmount;
     public int inventoryAmount;
+
+    public enum ItemType
+    {
+        bullets,
+        scrap,
+        medkit,
+        quest
+    }
 
 }
 

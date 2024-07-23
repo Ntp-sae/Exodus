@@ -15,10 +15,13 @@ MonoBehaviour:
   id: 3
   itemName: MedPack
   itemDescription: A medical kit. Should come in handy.
-  itemType: General
+  itemType: 2
   itemIcon: {fileID: 21300000, guid: a225d3b5f8c14b349afda13363a1d094, type: 3}
   itemTitle: 
   itemPrefab: {fileID: 0}
-  itemButton: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}
-  minAmount: 1
-  maxAmount: 1
+  itemButtonChest: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}
+  inventoryButton: {fileID: 6963195562692486664, guid: dfe1d876897eac3488c2587c1ed82f33, type: 3}
+  minAmount: 25
+  maxAmount: 25
+  chestAmount: 1
+  inventoryAmount: 1

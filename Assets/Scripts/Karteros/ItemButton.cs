@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ItemButton : MonoBehaviour //IPointerEnterHandler, IPointerExitHandler
+public class ItemButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     
     //private ItemDescription tooltip;
     
     public ItemData data;
-   
+    public TMP_Text amount;
+    
 
 
     //private void Start()
@@ -19,22 +22,24 @@ public class ItemButton : MonoBehaviour //IPointerEnterHandler, IPointerExitHand
 
     public void AddToInventory()
     {
-        InventoryManager.instance.AddItem(data.id);
+
+        PlayerInventory.Instance.AddToInventory(data, data.chestAmount);
 
         Destroy(gameObject, 0.2f);
     }
 
-    //public void OnPointerEnter(PointerEventData eventData)
-    //{
-    //    if (data != null) tooltip.ShowTooltip(data.itemDescription);
-    //}
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("Test");
+    }
 
-    //public void OnPointerExit(PointerEventData eventData)
-    //{
-    //    tooltip.HideTooltip();
-    //}
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("TestExx");
+    }
 
-    
-    
+
+
+
 
 }
