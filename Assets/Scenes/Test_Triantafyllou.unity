@@ -1785,6 +1785,38 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 2195727}
+    - target: {fileID: 4102111717609618282, guid: 045eadc510275ee46b6cad41f4f35311, type: 3}
+      propertyPath: m_Data.m_Mid
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102111717609618282, guid: 045eadc510275ee46b6cad41f4f35311, type: 3}
+      propertyPath: m_Data.m_Tip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102111717609618282, guid: 045eadc510275ee46b6cad41f4f35311, type: 3}
+      propertyPath: m_Data.m_Root
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102111717609618282, guid: 045eadc510275ee46b6cad41f4f35311, type: 3}
+      propertyPath: m_Data.m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437857998223777886, guid: 045eadc510275ee46b6cad41f4f35311, type: 3}
+      propertyPath: m_Data.m_Mid
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437857998223777886, guid: 045eadc510275ee46b6cad41f4f35311, type: 3}
+      propertyPath: m_Data.m_Tip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437857998223777886, guid: 045eadc510275ee46b6cad41f4f35311, type: 3}
+      propertyPath: m_Data.m_Root
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5437857998223777886, guid: 045eadc510275ee46b6cad41f4f35311, type: 3}
+      propertyPath: m_Data.m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8129967892304898614, guid: 045eadc510275ee46b6cad41f4f35311, type: 3}
       propertyPath: m_Name
       value: Player
