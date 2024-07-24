@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     public InputReader reader;
 
     private CharacterController playerController;
+    [SerializeField] Animator PlayerAnimator;
     private float playerVelocity;
     public float speed; //10f
     public float walkSpeed; //10f
@@ -18,21 +21,37 @@ public class PlayerController : MonoBehaviour
     public float _gravity;
     public float _gravityMultiplier;
     private bool isGrounded;
+    private bool isSprinting;
 
     public float jumpHeight;
     private bool lerpCrouch = false;
     private bool isCrouching = false;
     public float crouchTimer = 1f;
 
-    private bool isMovig = false;
-    private bool isSprinting = false;
-
     private Vector3 playerMovement;
+    private Vector2 mouseMovement;
+
+    //----------------------------------------------------//
+
+    public Camera cam;
+    private float xRotation = 0f;
+    private float yRotation = 0f;
+    public float xSensitivity = 10f;
+    public float ySensitivity = 10f;
+
+    public float xRotationTopClamp = -90f;
+    public float xRotationBotClamp = 90f;
+
+    float mouseX;
+    float mouseY;
 
     void Start()
     {
         playerController = GetComponent<CharacterController>();
         speed = walkSpeed;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void OnEnable()
@@ -42,6 +61,7 @@ public class PlayerController : MonoBehaviour
         reader.sprintPressEvent += playerStartSprint;
         reader.sprintReleaseEvent += playerStopSprint;
         reader.jumpEvent += playerJump;
+        reader.mouseEvent += mouseInput;
     }
 
     void OnDisable()
@@ -51,12 +71,17 @@ public class PlayerController : MonoBehaviour
         reader.sprintPressEvent -= playerStartSprint;
         reader.sprintReleaseEvent -= playerStopSprint;
         reader.jumpEvent -= playerJump;
+        reader.mouseEvent -= mouseInput;
     }
 
     void Update()
     {
-        gravity();
+        MouseInput();
         playerMovingForce();
+        gravity();
+        animationPlayer();
+
+        Debug.Log(playerController.velocity.z);
 
         if (lerpCrouch)
         {
@@ -82,6 +107,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void MouseInput()
+    {
+        // Gett the mouse input
+        mouseX = mouseMovement.x * xSensitivity * Time.deltaTime;
+        mouseY = mouseMovement.y * ySensitivity * Time.deltaTime;
+
+        //X axis rotation
+        xRotation -= mouseY;
+
+        //Clamp rotation
+        xRotation = Mathf.Clamp(xRotation, xRotationTopClamp, xRotationBotClamp);
+
+        //Y axis rotation
+        yRotation += mouseX;
+
+        //Apply rotations to transforms (Camera and player)
+        transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
+        cam.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+    }
+
     private void movementInput(Vector3 input)
     {
         moveDirection = input;
@@ -89,6 +134,7 @@ public class PlayerController : MonoBehaviour
 
     public void playerMovingForce()
     {
+        //Assign Velocity
         playerMovement = (transform.forward * moveDirection.z + transform.right * moveDirection.x);
         playerMovement.y = playerVelocity;
         playerController.Move(playerMovement * speed * Time.deltaTime);
@@ -111,12 +157,16 @@ public class PlayerController : MonoBehaviour
 
     public void playerStartSprint()
     {
+        //Assign Speed
         speed = sprintSpeed;
+        isSprinting = true;
     }
 
     public void playerStopSprint()
     {
+        //Assign Speed
         speed = walkSpeed;
+        isSprinting = false;
     }
 
     private void gravity()
@@ -128,6 +178,39 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerVelocity += _gravity * _gravityMultiplier * Time.deltaTime;
+        }
+    }
+    private void mouseInput(Vector2 input)
+    {
+        mouseMovement = input;
+    }
+
+    private void animationPlayer()
+    {
+        //Assign Animation
+        if (playerController.velocity.z < 0f)
+        {
+            PlayerAnimator.SetBool("isWalking", true);
+            PlayerAnimator.SetBool("isSprinting", false);
+            PlayerAnimator.SetBool("isIdle", false);
+        }
+        else if (playerController.velocity.z > 0.1f)
+        {
+            PlayerAnimator.SetBool("isWalking", true);
+            PlayerAnimator.SetBool("isSprinting", false);
+            PlayerAnimator.SetBool("isIdle", false);
+        }
+        else if (playerController.velocity.z <= 0.1f)
+        {
+            PlayerAnimator.SetBool("isWalking", false);
+            PlayerAnimator.SetBool("isSprinting", false);
+            PlayerAnimator.SetBool("isIdle", true);
+        }
+        if (isSprinting == true)
+        {
+            PlayerAnimator.SetBool("isWalking", false);
+            PlayerAnimator.SetBool("isSprinting", true);
+            PlayerAnimator.SetBool("isIdle", false);
         }
     }
 }

@@ -9,13 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b65a0d563047c418544d3422834e30, type: 3}
+  m_Script: {fileID: 11500000, guid: 41bb3cf2dd446d84b8c4832e31097b04, type: 3}
   m_Name: AK50
   m_EditorClassIdentifier: 
-  Type: 0
-  Name: AK50
-  ModelPrefab: {fileID: 5470753269378618888, guid: dcc883e338827ab47a85923d4d809386, type: 3}
-  SpawnPoint: {x: -0.0655, y: 0.2857, z: 0.0056}
+  ID: 0
+  name: 
+  description: 
+  WeaponPrefab: {fileID: 5470753269378618888, guid: dcc883e338827ab47a85923d4d809386, type: 3}
+  WeaponUiIcon: {fileID: 0}
+  MuzzleParticle: {fileID: 0}
+  SpawnPosition: {x: -0.0655, y: 0.2857, z: 0.0056}
   SpawnRotation: {x: -90, y: -116, z: 200}
-  ShootConfig: {fileID: 11400000, guid: 8b140b9a072c5674db472b5c4aab28b8, type: 2}
-  TrailConfig: {fileID: 11400000, guid: f1f877f308858904cb084f8562f29fbe, type: 2}
+  range: 800
+  baseDamage: 0
+  firingSpeed: 0
+  baseReloadSpeed: 0
+  recoil: 0
+  bulletSpread: {x: 0, y: 0, z: 0}
