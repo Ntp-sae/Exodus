@@ -36,13 +36,13 @@ public class NewEnemyController : MonoBehaviour
     [SerializeField] float attackDelay = 2f;
     [SerializeField] float currentAttackTimer;
     [SerializeField] float idleDelay = 2f;
-    [SerializeField] float dodgeDelay = 2f;
+    [SerializeField] float dodgeDelay = 1f;
     private float currentDodgeTimer;
     private float timerThreshold = 2f;
     #endregion
 
     private float timeElapsed;
-    private int breathAttackChance = 100;
+    private int breathAttackChance = 20;
     NavMeshAgent agent;
     Animator thisAnimator;
     AudioSource audioSource;

@@ -1502,7 +1502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalSpeed: 6
-  rageSpeed: 5
+  rageSpeed: 8
   health: 1000
   MaxHealth: 1000
   AttackRange: 4
@@ -1517,7 +1517,7 @@ MonoBehaviour:
   attackDelay: 2
   currentAttackTimer: 0
   idleDelay: 0
-  dodgeDelay: 2
+  dodgeDelay: 1
   currentState: 0
 --- !u!195 &6735205811102274725
 NavMeshAgent:
