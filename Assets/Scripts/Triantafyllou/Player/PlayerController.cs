@@ -81,8 +81,6 @@ public class PlayerController : MonoBehaviour
         gravity();
         animationPlayer();
 
-        Debug.Log(playerController.velocity.z);
-
         if (lerpCrouch)
         {
             crouchTimer += Time.deltaTime;

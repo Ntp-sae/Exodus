@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -12,51 +13,50 @@ public class Weapon : MonoBehaviour
     public Camera playerCamera;
     [SerializeField] Animator playerAnimator;
 
-    public Transform weaponHolder;
     public WeaponManager weaponManager;
 
     private Weapon currentWeapon;
-    private WeaponSO currentWeaponSO;
+    public WeaponSO currentWeaponSO;
 
     private bool isFiring = false;
     private bool isReloading = false;
 
-    private Vector3 originalWeaponPosition;
-    public float swayAmount = 0.02f;
-    public float swaySmoothness = 2.0f;
-
+    private float currentAmmo;
 
     void OnEnable()
     {
-        reader.shootEvent += FireWeapon;
+        reader.shootPressEvent += StartFiring;
+        reader.shootReleaseEvent += StopFiring;
+        reader.reloadEvent += ReloadWeapon;
+
+        isReloading = false;
+        playerAnimator.SetBool("isReloading", false);
     }
     void OnDisable()
     {
-        reader.shootEvent -= FireWeapon;
+        reader.shootPressEvent -= StartFiring;
+        reader.shootReleaseEvent -= StopFiring;
+        reader.reloadEvent -= ReloadWeapon;
     }
     private void Start()
     {
         if (weaponManager == null)
         {
             weaponManager = WeaponManager.instance;
+            currentAmmo = currentWeaponSO.maxAmmo;
         }
     }
 
     private void Update()
     {
-        if (isFiring && currentWeapon != null && !isReloading)
-        {
-            FireWeapon();
-        }
         animationEvents();
     }
 
-    private void FireWeapon()
+    private void StartFiring()
     {
         isFiring = true;
-
-        // Add logic for firing the weapon
-        Debug.Log("Firing " + currentWeaponSO.name);
+        currentAmmo--;
+        Debug.Log("Weapon is Firing!!!!");
 
         // Instantiate muzzle particle
         if (currentWeaponSO.MuzzleParticle != null)
@@ -70,13 +70,27 @@ public class Weapon : MonoBehaviour
             Debug.Log("Hit: " + hit.transform.name);
            // Add damage to Enemy
         }
+
     }
-    private IEnumerator ReloadWeapon()
+
+    private void StopFiring()
+    {
+        Debug.Log("WeaponStopFiring");
+        isFiring = false;
+    }
+
+    private void ReloadWeapon()
+    {
+        Debug.Log("Weapon is Reloading");
+       StartCoroutine(Reloading());
+    }
+
+    private IEnumerator Reloading()
     {
         isReloading = true;
-        playerAnimator.SetBool("isReloading", true);
-
+        
         yield return new WaitForSeconds(currentWeaponSO.baseReloadSpeed);
+        currentAmmo = currentWeaponSO.maxAmmo;
 
         isReloading = false;
     }
@@ -93,17 +107,30 @@ public class Weapon : MonoBehaviour
 
     private void animationEvents()
     {
-        if (isFiring && !isReloading)
+        if (isFiring)
         {
             playerAnimator.SetBool("isFiring", true);
+            playerAnimator.SetBool("isReloading", false);
+            if (!isReloading)
+            {
+                playerAnimator.SetBool("isFiring", true);
+                playerAnimator.SetBool("isReloading", false);
+            }
         }
         else if (isReloading)
         {
             playerAnimator.SetBool("isReloading", true);
+            playerAnimator.SetBool("isFiring", false);
+            if (!isFiring)
+            {
+                playerAnimator.SetBool("isReloading", true);
+                playerAnimator.SetBool("isFiring", false);
+            }
         }
         else
         {
-            return;
+            playerAnimator.SetBool("isReloading", false);
+            playerAnimator.SetBool("isFiring", false);
         }
     }
 }

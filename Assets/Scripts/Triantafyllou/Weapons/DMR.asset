@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41bb3cf2dd446d84b8c4832e31097b04, type: 3}
+  m_Name: DMR
+  m_EditorClassIdentifier: 
+  ID: 2
+  name: DMR
+  description: The DMR is a customized assault rifle chambered in .50 BMG, delivering
+    exceptional stopping power. It is ideal for long-range engagements with a moderate
+    rate of fire and high recoil. Customize with a range of attachments to enhance
+    performance and adapt to different combat scenarios.
+  WeaponUiIcon: {fileID: 21300000, guid: 92a6affaf5d451a49a99f6e38eb8af72, type: 3}
+  MuzzleParticle: {fileID: 0}
+  range: 1500
+  baseDamage: 100
+  firingSpeed: 1
+  baseReloadSpeed: 5
+  maxAmmo: 10
+  recoil: 8
+  bulletSpread: {x: 0.1, y: 0.1, z: 0.1}

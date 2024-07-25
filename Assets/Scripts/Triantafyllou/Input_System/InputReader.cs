@@ -13,7 +13,9 @@ public class InputReader : ScriptableObject, PlayerInput.IOnFootActions
     public event Action crouchEvent;
     public event Action sprintPressEvent;
     public event Action sprintReleaseEvent;
-    public event Action shootEvent;
+    public event Action reloadEvent;
+    public event Action shootPressEvent;
+    public event Action shootReleaseEvent;
 
     private PlayerInput _playerInput;
 
@@ -70,7 +72,19 @@ public class InputReader : ScriptableObject, PlayerInput.IOnFootActions
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            shootEvent?.Invoke();
+            shootPressEvent?.Invoke();
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            shootReleaseEvent?.Invoke();
+        }
+    }
+
+    public void OnReload(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            reloadEvent?.Invoke();
         }
     }
 
