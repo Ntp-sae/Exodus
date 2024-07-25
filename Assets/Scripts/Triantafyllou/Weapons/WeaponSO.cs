@@ -22,9 +22,9 @@ public class WeaponSO : ScriptableObject
     public int ID;
     public string name;
     public string description;
-    //public GameObject WeaponPrefab;
     public Sprite WeaponUiIcon;
-    public ParticleSystem MuzzleParticle;
+    //public GameObject WeaponPrefab;
+    //public ParticleSystem MuzzleParticle;
 
     //[Header("Weapon offset")]
     //public Vector3 SpawnPosition;

@@ -89,6 +89,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Weaponselection"",
+                    ""type"": ""Button"",
+                    ""id"": ""f0be82f4-62f1-4d00-ab0c-469f2c626255"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -322,6 +331,28 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc9a507f-ea62-4b06-ad50-3b365570e71e"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weaponselection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a7ac8c6-3f85-4f2c-be85-8126b143aa09"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Weaponselection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -337,6 +368,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_OnFoot_Sprint = m_OnFoot.FindAction("Sprint", throwIfNotFound: true);
         m_OnFoot_Shoot = m_OnFoot.FindAction("Shoot", throwIfNotFound: true);
         m_OnFoot_Reload = m_OnFoot.FindAction("Reload", throwIfNotFound: true);
+        m_OnFoot_Weaponselection = m_OnFoot.FindAction("Weaponselection", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -405,6 +437,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Sprint;
     private readonly InputAction m_OnFoot_Shoot;
     private readonly InputAction m_OnFoot_Reload;
+    private readonly InputAction m_OnFoot_Weaponselection;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -416,6 +449,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_OnFoot_Sprint;
         public InputAction @Shoot => m_Wrapper.m_OnFoot_Shoot;
         public InputAction @Reload => m_Wrapper.m_OnFoot_Reload;
+        public InputAction @Weaponselection => m_Wrapper.m_OnFoot_Weaponselection;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -446,6 +480,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
+            @Weaponselection.started += instance.OnWeaponselection;
+            @Weaponselection.performed += instance.OnWeaponselection;
+            @Weaponselection.canceled += instance.OnWeaponselection;
         }
 
         private void UnregisterCallbacks(IOnFootActions instance)
@@ -471,6 +508,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
+            @Weaponselection.started -= instance.OnWeaponselection;
+            @Weaponselection.performed -= instance.OnWeaponselection;
+            @Weaponselection.canceled -= instance.OnWeaponselection;
         }
 
         public void RemoveCallbacks(IOnFootActions instance)
@@ -497,5 +537,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnWeaponselection(InputAction.CallbackContext context);
     }
 }

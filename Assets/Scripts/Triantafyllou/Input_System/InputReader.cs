@@ -16,6 +16,8 @@ public class InputReader : ScriptableObject, PlayerInput.IOnFootActions
     public event Action reloadEvent;
     public event Action shootPressEvent;
     public event Action shootReleaseEvent;
+    public event Action weaponFirstPressEvent;
+    public event Action weaponSecondPressEvent;
 
     private PlayerInput _playerInput;
 
@@ -88,4 +90,15 @@ public class InputReader : ScriptableObject, PlayerInput.IOnFootActions
         }
     }
 
+    public void OnWeaponselection(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            weaponFirstPressEvent?.Invoke();
+        }
+        if (context.phase == InputActionPhase.Performed)
+        {
+            weaponSecondPressEvent?.Invoke();
+        }
+    }
 }

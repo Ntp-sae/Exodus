@@ -17,11 +17,14 @@ public class Weapon : MonoBehaviour
 
     private Weapon currentWeapon;
     public WeaponSO currentWeaponSO;
+    public ParticleSystem muzzleEffect;
+    public GameObject impactEffect;
 
     private bool isFiring = false;
     private bool isReloading = false;
 
     private float currentAmmo;
+    private float nextTimeToFire = 0f;
 
     void OnEnable()
     {
@@ -54,29 +57,37 @@ public class Weapon : MonoBehaviour
 
     private void StartFiring()
     {
-        isFiring = true;
-        currentAmmo--;
-        Debug.Log("Weapon is Firing!!!!");
-
-        // Instantiate muzzle particle
-        if (currentWeaponSO.MuzzleParticle != null)
+        if (Time.time >= nextTimeToFire)
         {
-            Instantiate(currentWeaponSO.MuzzleParticle, currentWeapon.transform.position, Quaternion.identity);
-        }
+            nextTimeToFire = Time.time + 1f / currentWeaponSO.firingSpeed;
+            isFiring = true;
+            currentAmmo--;
+            Debug.Log("Weapon is Firing!!!!");
 
-        RaycastHit hit;
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, currentWeaponSO.range))
-        {
-            Debug.Log("Hit: " + hit.transform.name);
-           // Add damage to Enemy
-        }
+            // Instantiate muzzle particle
+            muzzleEffect.Play();
 
+            RaycastHit hit;
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, currentWeaponSO.range))
+            {
+                Debug.Log("Hit: " + hit.transform.name);
+                //Target target = hit.transform.GetComponent<>(Target);
+                //if (target != null)
+                //{
+                //    target.TakeDamage(damage);
+                //}
+
+                GameObject impactGo = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                Destroy(impactGo, 2f);
+            }
+        }
     }
 
     private void StopFiring()
     {
         Debug.Log("WeaponStopFiring");
         isFiring = false;
+        muzzleEffect.Stop();
     }
 
     private void ReloadWeapon()
@@ -93,16 +104,6 @@ public class Weapon : MonoBehaviour
         currentAmmo = currentWeaponSO.maxAmmo;
 
         isReloading = false;
-    }
-
-    private void EquipWeapon()
-    {
-
-    }
-
-    public void OnSwitchWeapon()
-    {
-
     }
 
     private void animationEvents()
