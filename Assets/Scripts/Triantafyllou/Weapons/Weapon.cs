@@ -52,6 +52,11 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
+        if(currentAmmo <= 0)
+        {
+            ReloadWeapon();
+            return;
+        }
         animationEvents();
     }
 
@@ -94,16 +99,18 @@ public class Weapon : MonoBehaviour
     {
         Debug.Log("Weapon is Reloading");
        StartCoroutine(Reloading());
+        return;
     }
 
     private IEnumerator Reloading()
     {
         isReloading = true;
-        
-        yield return new WaitForSeconds(currentWeaponSO.baseReloadSpeed);
-        currentAmmo = currentWeaponSO.maxAmmo;
 
+        yield return new WaitForSeconds(currentWeaponSO.baseReloadSpeed - 0.25f);
         isReloading = false;
+        yield return new WaitForSeconds(0.25f);
+
+        currentAmmo = currentWeaponSO.maxAmmo;
     }
 
     private void animationEvents()

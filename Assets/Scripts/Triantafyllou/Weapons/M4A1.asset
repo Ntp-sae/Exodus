@@ -20,11 +20,10 @@ MonoBehaviour:
     Customize with various attachments to optimize performance and suit your tactical
     needs.
   WeaponUiIcon: {fileID: 21300000, guid: 5cce39cf79daa74479a8a5fc5bea4ff4, type: 3}
-  MuzzleParticle: {fileID: 0}
   range: 600
   baseDamage: 20
   firingSpeed: 5
-  baseReloadSpeed: 3.12
+  baseReloadSpeed: 3
   maxAmmo: 30
   recoil: 2
   bulletSpread: {x: 0.2, y: 0.2, z: 0.2}
