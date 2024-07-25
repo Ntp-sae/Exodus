@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41bb3cf2dd446d84b8c4832e31097b04, type: 3}
+  m_Name: AK50
+  m_EditorClassIdentifier: 
+  ID: 0
+  name: 
+  description: 
+  WeaponPrefab: {fileID: 5470753269378618888, guid: dcc883e338827ab47a85923d4d809386, type: 3}
+  WeaponUiIcon: {fileID: 0}
+  MuzzleParticle: {fileID: 0}
+  SpawnPosition: {x: -0.0655, y: 0.2857, z: 0.0056}
+  SpawnRotation: {x: -90, y: -116, z: 200}
+  range: 800
+  baseDamage: 0
+  firingSpeed: 0
+  baseReloadSpeed: 0
+  recoil: 0
+  bulletSpread: {x: 0, y: 0, z: 0}
