@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/Shaders/Shoot Rifle.anim.meta
+guid: c517d1fc726db654780cb5f5f3394922
+========
+guid: 69caca7fb731d03459e412c05afa8659
+>>>>>>>> Nick:Assets/Materials/Shaders/New Universal Render Pipeline Asset_Renderer.asset.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
