@@ -321,15 +321,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: -380
     m_Right: 0
-    m_Top: 115
+    m_Top: 80
     m_Bottom: 0
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 120}
-  m_Spacing: {x: 46.3, y: 19.04}
+  m_Spacing: {x: 46.3, y: 90}
   m_Constraint: 1
   m_ConstraintCount: 1
 --- !u!114 &185162062
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8d6ca5162f119c349ba87397a1dad198, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2cdcbd587f64dca4d839a02d136db3fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -386,7 +386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &207441616
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 59b00ac52d138744db57415940b7d816, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d00ca0e42df282f49b350edfe7968e16, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1539,7 +1539,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8d6ca5162f119c349ba87397a1dad198, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2cdcbd587f64dca4d839a02d136db3fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1570,15 +1570,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: -380
     m_Right: 0
-    m_Top: 115
+    m_Top: 80
     m_Bottom: 0
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 120}
-  m_Spacing: {x: 46.3, y: 19.04}
+  m_Spacing: {x: 46.01, y: 90}
   m_Constraint: 1
   m_ConstraintCount: 1
 --- !u!1 &951050634
@@ -2055,15 +2055,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: -380
     m_Right: 0
-    m_Top: 115
+    m_Top: 80
     m_Bottom: 0
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 120}
-  m_Spacing: {x: 46.3, y: 19.04}
+  m_Spacing: {x: 46.3, y: 90}
   m_Constraint: 1
   m_ConstraintCount: 1
 --- !u!114 &1361186848
@@ -2086,7 +2086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8d6ca5162f119c349ba87397a1dad198, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2cdcbd587f64dca4d839a02d136db3fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
