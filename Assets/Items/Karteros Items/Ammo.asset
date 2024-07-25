@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 6e44c6b6944eda74a9ceb022448ff600, type: 3}
   m_Name: Ammo
-  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  m_EditorClassIdentifier: 
   id: 2
   itemName: Ammo
-  itemDescription: A bunch of bullets for my guns
+  itemDescription: Bunch of bullets for my guns
   itemType: 0
-  itemIcon: {fileID: 21300000, guid: 12b985af2e9c2a141a1456c5f8332fcb, type: 3}
+  itemIcon: {fileID: 21300000, guid: 1c319a8359ba92b4eb2cb1845ae2003f, type: 3}
   itemTitle: 
   itemPrefab: {fileID: 0}
   itemButtonChest: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}
@@ -24,4 +24,4 @@ MonoBehaviour:
   minAmount: 25
   maxAmount: 25
   chestAmount: 25
-  inventoryAmount: 0
+  inventoryAmount: 50

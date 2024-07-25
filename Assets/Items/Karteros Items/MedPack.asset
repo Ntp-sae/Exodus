@@ -21,7 +21,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 0}
   itemButtonChest: {fileID: 6963195562692486664, guid: ae4cde8bae3724b4b96075117555185f, type: 3}
   inventoryButton: {fileID: 6963195562692486664, guid: dfe1d876897eac3488c2587c1ed82f33, type: 3}
-  minAmount: 25
-  maxAmount: 25
+  minAmount: 1
+  maxAmount: 1
   chestAmount: 1
-  inventoryAmount: 1
+  inventoryAmount: 2

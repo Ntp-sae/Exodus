@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 6e44c6b6944eda74a9ceb022448ff600, type: 3}
   m_Name: Scrap
-  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  m_EditorClassIdentifier: 
   id: 1
-  itemName: Scrap metal
-  itemDescription: Bunch of metal scraps. Could be useful if I gather enough.
+  itemName: Metal Scrap
+  itemDescription: Old, scrapped tech parts. Should be useful if I gather enough
   itemType: 1
   itemIcon: {fileID: 21300000, guid: 378e185567d334948800a83522d59ec3, type: 3}
   itemTitle: 
@@ -24,4 +24,4 @@ MonoBehaviour:
   minAmount: 25
   maxAmount: 25
   chestAmount: 25
-  inventoryAmount: 47
+  inventoryAmount: 50

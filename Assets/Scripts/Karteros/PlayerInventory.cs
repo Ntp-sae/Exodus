@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security;
 using TMPro;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
@@ -22,44 +23,50 @@ public class PlayerInventory : MonoBehaviour
         Instance = this;
     }
 
-    public void AddToInventory(ItemData data ,int amount)
+    public void AddToInventory(ItemData data, int amount)
     {
         if(data.itemType == ItemData.ItemType.bullets)
         {
+
             bullets += amount;
+            
         }
         if(data.itemType == ItemData.ItemType.scrap)
         {
+           
             scrap += amount;
+         
         }
         if(data.itemType == ItemData.ItemType.medkit)
         {
+            
             medkit += amount;
+            
         }
     }
 
-    public void RemoveFromInventory(ItemData data, int amount)
+    public void RemoveFromInventory(ItemData data)
     {
         if (data.itemType == ItemData.ItemType.bullets)
         {
-            bullets -= amount;
+            bullets -= 1;
         }
         if (data.itemType == ItemData.ItemType.scrap)
         {
-            scrap -= amount;
+            scrap -= 200;
         }
         if (data.itemType == ItemData.ItemType.medkit)
         {
-            medkit -= amount;
+            medkit -= 1;
         }
     }
 
 
     public void Update()
     {
-        bulletsText.text = bullets.ToString();
-        scrapText.text = scrap.ToString();
-        medkitText.text = medkit.ToString();
+         bulletsText.text = bullets.ToString();
+         scrapText.text = scrap.ToString();
+         medkitText.text = medkit.ToString();
 
         if (Input.GetKeyDown(KeyCode.I))
         {

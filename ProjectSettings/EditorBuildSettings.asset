@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Test_Karteros.unity
+    guid: 25ce52c46252cfe46a0d8c13a70ab282
   m_configObjects: {}

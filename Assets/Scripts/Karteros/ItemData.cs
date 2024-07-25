@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
+
 
 [CreateAssetMenu]
 public class ItemData : ScriptableObject
@@ -16,7 +16,7 @@ public class ItemData : ScriptableObject
     public string itemTitle;
     public GameObject itemPrefab;
     public Button itemButtonChest;
-    public Button inventoryButton;
+    public Button inventoryButton; 
     public int minAmount;
     public int maxAmount;
     public int chestAmount;
@@ -29,7 +29,6 @@ public class ItemData : ScriptableObject
         medkit,
         quest
     }
-
 }
 
 

@@ -917,7 +917,13 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -937,11 +943,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 1b29e3a5-37f3-418e-bf4a-0abdb2ad23a6
+  cloudProjectId: 9e5f1fdb-8518-4866-a4c0-900ab5a86583
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Exodus
-  organizationId: nicholast-p
+  organizationId: tonkikonk
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

@@ -24,6 +24,8 @@ public class ItemButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
 
         PlayerInventory.Instance.AddToInventory(data, data.chestAmount);
+        data.inventoryAmount += data.chestAmount;
+        
 
         Destroy(gameObject, 0.2f);
     }
